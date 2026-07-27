@@ -9,6 +9,7 @@ import DemoVideoSection from "@/components/DemoVideoSection";
 import FeaturesGrid from "@/components/FeaturesGrid";
 import Testimonials from "@/components/Testimonials";
 import FounderSection from "@/components/FounderSection";
+import HomeBlogSection from "@/components/HomeBlogSection";
 import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
 
@@ -25,6 +26,7 @@ export default function HomePage() {
       <FeaturesGrid />
       <Testimonials />
       <FounderSection />
+      <HomeBlogSection />
       <FAQSection />
       <CTASection />
     </>
