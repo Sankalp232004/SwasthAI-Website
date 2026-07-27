@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SwasthAI - Healthcare &amp; Clinic Workflow Blog</title>
+    <link>https://swasthai-three.vercel.app/blog</link>
+    <description>Practical guides, OPD intake strategies, and healthcare technology insights for clinic owners across India.</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Jul 2026 16:30:00 GMT</lastBuildDate>
+    <atom:link href="https://swasthai-three.vercel.app/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title><![CDATA[Rethinking OPD Intake: The 5-Minute Window That Decides Clinic Efficiency]]></title>
+      <link>https://swasthai-three.vercel.app/blog/rethinking-opd-intake-five-minute-window</link>
+      <guid isPermaLink="true">https://swasthai-three.vercel.app/blog/rethinking-opd-intake-five-minute-window</guid>
+      <description><![CDATA[Why the minutes between a patient arriving and seeing the doctor determine patient satisfaction and operational output.]]></description>
+      <pubDate>Fri, 24 Jul 2026 00:00:00 GMT</pubDate>
+      <category>Clinic Workflow</category>
+      <author>Founder</author>
+    </item>
+    <item>
+      <title><![CDATA[Why Indian Clinics Need Offline-First Healthcare Software]]></title>
+      <link>https://swasthai-three.vercel.app/blog/why-small-clinics-need-offline-first-software</link>
+      <guid isPermaLink="true">https://swasthai-three.vercel.app/blog/why-small-clinics-need-offline-first-software</guid>
+      <description><![CDATA[How internet volatility in Tier 2 and Tier 3 cities shapes the architectural necessity of offline-resilient OPD software.]]></description>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+      <category>Digital Health</category>
+      <author>Founder</author>
+    </item>
+  </channel>
+</rss>
