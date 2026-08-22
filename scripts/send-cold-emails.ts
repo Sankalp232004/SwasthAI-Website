@@ -39,7 +39,7 @@ const CONFIG = {
   senderName: "Sankalp Mishra",
   replyToEmail: "swasthai.founder@gmail.com",
   replyToName: "Sankalp Mishra",
-  testRecipient: "swasthai.founder@gmail.com",
+  testRecipient: "mishrasankalp04@gmail.com",
   maxEmailsPerDay: 10,
   delayBetweenSendMs: 10_000, // 10 seconds conservative delay
   officialWebsiteUrl: "https://swasthai-three.vercel.app/",

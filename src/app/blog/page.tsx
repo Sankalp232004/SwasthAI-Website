@@ -59,7 +59,7 @@ export default function BlogIndexPage() {
       />
 
       {/* Hero Header */}
-      <section className="bg-[#0F2C59] text-white py-16 sm:py-20 border-b border-white/10 relative overflow-hidden">
+      <section className="bg-gradient-to-r from-[#0F2C59] via-[#1A3D74] to-[#0F2C59] animate-gradient-x text-white py-16 sm:py-20 border-b border-white/10 relative overflow-hidden">
         <div className="absolute top-0 right-0 -mt-16 -mr-16 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">

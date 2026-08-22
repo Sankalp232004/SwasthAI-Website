@@ -12,7 +12,7 @@ interface BlogCardProps {
 export default function BlogCard({ post, featured = false }: BlogCardProps) {
   if (featured) {
     return (
-      <div className="group bg-slate-900 text-white rounded-3xl overflow-hidden border border-slate-800 shadow-2xl hover:border-teal-500/40 transition-all duration-300 grid grid-cols-1 lg:grid-cols-12">
+      <div className="group bg-slate-900 text-white rounded-3xl overflow-hidden border border-slate-800 shadow-2xl hover:border-teal-500/40 transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 blog-card-hover">
         <div className="lg:col-span-7 relative aspect-[16/10] lg:aspect-auto bg-slate-950 overflow-hidden">
           <Image
             src={post.featuredImage}
@@ -76,7 +76,7 @@ export default function BlogCard({ post, featured = false }: BlogCardProps) {
   }
 
   return (
-    <article className="group bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-teal-300/80 transition-all duration-300 flex flex-col justify-between">
+    <article className="group bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm transition-all duration-300 flex flex-col justify-between blog-card-hover">
       <div>
         <div className="relative aspect-[16/9] bg-slate-100 overflow-hidden">
           <Image
