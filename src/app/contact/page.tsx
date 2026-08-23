@@ -130,6 +130,34 @@ export default function ContactPage() {
                 </div>
               </div>
 
+              {/* Downloadable Clinic Flyer Card */}
+              <div className="p-4 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 text-white space-y-2 border border-slate-700">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Clinic One-Pager</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-white/10 font-mono text-slate-300">PDF / Print</span>
+                </div>
+                <h4 className="text-sm font-bold text-white">Download Clinic Operations Flyer</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Share our 1-page operational overview & live triage workflow with your doctors or clinic partners.
+                </p>
+                <div className="pt-1 flex gap-2">
+                  <a
+                    href="/flyer.html"
+                    target="_blank"
+                    className="flex-1 text-center py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition-all"
+                  >
+                    View Interactive Flyer →
+                  </a>
+                  <a
+                    href="/img/flyer.jpg"
+                    download="SwasthAI_Clinic_Flyer.jpg"
+                    className="px-3 py-2 bg-white/10 hover:bg-white/20 text-slate-200 rounded-lg text-xs font-semibold"
+                  >
+                    Download JPG
+                  </a>
+                </div>
+              </div>
+
             </div>
 
             {/* Contact Form Column */}

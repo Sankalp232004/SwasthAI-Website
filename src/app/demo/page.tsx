@@ -83,7 +83,7 @@ export default function DemoPage() {
             ))}
           </div>
 
-          <div className="text-center pt-4">
+          <div className="text-center pt-4 flex flex-col sm:flex-row justify-center items-center gap-3">
             <a
               href={waLink}
               target="_blank"
@@ -92,6 +92,14 @@ export default function DemoPage() {
             >
               <MessageSquare className="w-4 h-4 fill-white" />
               <span>Start Your 1-Week Pilot on WhatsApp</span>
+            </a>
+
+            <a
+              href="/flyer.html"
+              target="_blank"
+              className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 px-5 py-3 rounded-xl font-semibold text-sm transition-all"
+            >
+              <span>Download Clinic Flyer (PDF) →</span>
             </a>
           </div>
         </div>
