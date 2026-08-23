@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwasthAI — Doctor Pitch Deck | Intelligent Clinic Operations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #041310;
+      --card-bg: #07221c;
+      --card-inner: #0b2e26;
+      --card-border: rgba(52, 211, 153, 0.25);
+      --emerald-glow: #10b981;
+      --emerald-bright: #34d399;
+      --cyan-bright: #38bdf8;
+      --coral-red: #ef4444;
+      --text-main: #ffffff;
+      --text-sub: #a7f3d0;
+      --text-muted: #6ee7b7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: #020c0a;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Deck Controls */
+    .controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1066px;
+      margin-bottom: 16px;
+      padding: 8px 16px;
+      background: rgba(7, 34, 28, 0.8);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+
+    .nav-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-ctrl {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-ctrl:hover {
+      background: rgba(52, 211, 153, 0.2);
+      border-color: #34d399;
+      color: #34d399;
+    }
+
+    .btn-print {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border: none;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+    }
+
+    .btn-print:hover {
+      background: linear-gradient(135deg, #34d399, #10b981);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .slide-counter {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #38bdf8;
+      letter-spacing: 1px;
+    }
+
+    /* 16:9 Presentation Canvas */
+    .deck-container {
+      width: 100%;
+      max-width: 1066px;
+      aspect-ratio: 16 / 9;
+      background: var(--card-bg);
+      border: 1.5px solid rgba(52, 211, 153, 0.3);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 
+        0 30px 80px -20px rgba(0, 0, 0, 0.8),
+        0 0 50px -10px rgba(16, 185, 129, 0.2);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Ambient Glowing Mesh */
+    .deck-container::before {
+      content: '';
+      position: absolute;
+      top: -150px;
+      right: -150px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(52, 211, 153, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .deck-container::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Slides System */
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 48px 56px;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Header Bar on Slides */
+    .slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 16px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      background: #ffffff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ef4444;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .brand-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffffff;
+    }
+
+    .brand-name span {
+      color: #38bdf8;
+    }
+
+    .slide-tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Slide 1: Title Slide */
+    .hero-title-box {
+      margin: auto 0;
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #38bdf8;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .hero-h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 54px;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 18px;
+    }
+
+    .hero-h1 span {
+      background: linear-gradient(135deg, #34d399 0%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-p {
+      font-size: 18px;
+      color: #d1fae5;
+      line-height: 1.6;
+      max-width: 650px;
+    }
+
+    .slide-footer-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 16px;
+      font-size: 13px;
+      color: #6ee7b7;
+    }
+
+    .slide-footer-meta a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* General Slide Content */
+    .slide-body {
+      margin: auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .slide-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+    }
+
+    .slide-title span {
+      color: #34d399;
+    }
+
+    .slide-subtitle {
+      font-size: 15px;
+      color: #a7f3d0;
+      line-height: 1.5;
+    }
+
+    /* Grid Layouts */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .grid-4col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    /* Cards */
+    .feature-card {
+      background: var(--card-inner);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .feature-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      font-size: 13px;
+      color: #a7f3d0;
+      line-height: 1.45;
+    }
+
+    .card-danger {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+    .card-danger h4 { color: #fca5a5; }
+
+    .card-success {
+      background: rgba(16, 185, 129, 0.08);
+      border-color: rgba(52, 211, 153, 0.4);
+    }
+    .card-success h4 { color: #86efac; }
+
+    /* Numbered Workflow Step */
+    .step-box-deck {
+      background: var(--card-inner);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px 18px;
+      position: relative;
+    }
+
+    .step-num-circle {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #10b981, #047857);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      color: #ffffff;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+    }
+
+    .step-box-deck h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .step-box-deck p {
+      font-size: 12px;
+      color: #a7f3d0;
+      line-height: 1.4;
+    }
+
+    /* Live Queue UI Mock */
+    .mock-queue {
+      background: rgba(4, 19, 16, 0.95);
+      border: 1.5px solid rgba(52, 211, 153, 0.3);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .queue-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--card-inner);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+
+    .queue-row-alert {
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.12);
+    }
+
+    .patient-meta h5 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .patient-meta p {
+      font-size: 11px;
+      color: #a7f3d0;
+    }
+
+    .badge-pill {
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .badge-emergency { background: #ef4444; color: #ffffff; }
+    .badge-urgent { background: #f97316; color: #ffffff; }
+    .badge-moderate { background: #eab308; color: #000000; }
+    .badge-routine { background: #10b981; color: #ffffff; }
+
+    /* Pilot Callout Card */
+    .pilot-card {
+      background: linear-gradient(135deg, rgba(6, 78, 59, 0.8), rgba(7, 34, 28, 0.95));
+      border: 2px solid #34d399;
+      border-radius: 20px;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .pilot-details h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .pilot-details p {
+      font-size: 14px;
+      color: #d1fae5;
+      line-height: 1.5;
+    }
+
+    .qr-deck-frame {
+      width: 120px;
+      height: 120px;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      flex-shrink: 0;
+    }
+
+    .qr-deck-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Print View */
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+      .controls-bar {
+        display: none;
+      }
+      .deck-container {
+        border: none;
+        box-shadow: none;
+        max-width: 100%;
+        width: 100%;
+        aspect-ratio: auto;
+      }
+      .slide {
+        display: flex !important;
+        position: relative !important;
+        opacity: 1 !important;
+        transform: none !important;
+        page-break-after: always;
+        min-height: 100vh;
+        border-bottom: 2px solid #000;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Controls Navigation Bar -->
+  <div class="controls-bar">
+    <div class="nav-group">
+      <button class="btn-ctrl" onclick="prevSlide()">← Prev</button>
+      <button class="btn-ctrl" onclick="nextSlide()">Next →</button>
+      <span class="slide-counter" id="slideNum">Slide 1 of 7</span>
+    </div>
+
+    <div class="nav-group">
+      <button class="btn-ctrl btn-print" onclick="window.print()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+        Print / PDF Deck
+      </button>
+      <a href="https://swasthai-three.vercel.app/" target="_blank" class="btn-ctrl" style="text-decoration:none;">
+        Live Website ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- Master Presentation Container -->
+  <div class="deck-container">
+
+    <!-- SLIDE 1: Title & Core Value Proposition -->
+    <div class="slide active" id="slide-1">
+      <div class="slide-header">
+        <div class="brand-group">
+          <div class="brand-icon">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+          <div class="brand-name">Swasth<span>AI</span></div>
+        </div>
+        <div class="slide-tag">Doctor Pitch Deck · 2026</div>
+      </div>
+
+      <div class="hero-title-box">
+        <div class="hero-badge">
+          <span>⚡</span> Intelligent OPD Queue Management
+        </div>
+        <h1 class="hero-h1">
+          See Urgent Patients First. <span>Every Single Time.</span>
+        </h1>
+        <p class="hero-p">
+          A zero-friction, QR-based patient intake and clinical prioritization platform built specifically for high-volume outpatient clinics in India.
+        </p>
+      </div>
+
+      <div class="slide-footer-meta">
+        <div>Founder: <strong>Sankalp Mishra</strong> (+91 9140721395)</div>
+        <div>Official Portal: <a href="https://swasthai-three.vercel.app/" target="_blank">swasthai-three.vercel.app</a></div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: The Daily OPD Problem -->
+    <div class="slide" id="slide-2">
+      <div class="slide-header">
+        <div class="brand-group">
+          <div class="brand-name">Swasth<span>AI</span></div>
+        </div>
+        <div class="slide-tag">The Clinic Reality</div>
+      </div>
+
+      <div class="slide-body">
+        <div>
+          <h2 class="slide-title">The First-In, First-Out <span>Queue Bottleneck</span></h2>
+          <p class="slide-subtitle">In almost every Indian clinic, patients are seen strictly in the order they walked in.</p>
+        </div>
+
+        <div class="grid-3col">
+          <div class="feature-card card-danger">
+            <div class="feature-icon">⏳</div>
+            <h4>Acute Patients Wait in Blind Spots</h4>
+            <p>A child with 103°F fever or severe abdominal pain sits behind routine follow-ups and prescription refills.</p>
+          </div>
+
+          <div class="feature-card card-danger">
+            <div class="feature-icon">🗣️</div>
+            <h4>Receptionist Friction & Guesswork</h4>
+            <p>Front-desk staff face continuous arguments and are forced to make subjective triage decisions without clinical context.</p>
+          </div>
+
+          <div class="feature-card card-danger">
+            <div class="feature-icon">📋</div>
+            <h4>Zero Pre-Consult Context</h4>
+            <p>Doctors spend the first 3 minutes of every 8-minute consultation extracting basic symptoms from scratch.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer-meta">
+        <span>The Problem: Paper registers capture time of arrival, never clinical urgency.</span>
+        <span>Slide 2 / 7</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: How SwasthAI Works (3-Step Flow) -->
+    <div class="slide" id="slide-3">
+      <div class="slide-header">
+        <div class="brand-group">
+          <div class="brand-name">Swasth<span>AI</span></div>
+        </div>
+        <div class="slide-tag">The 3-Step Solution</div>
+      </div>
+
+      <div class="slide-body">
+        <div>
+          <h2 class="slide-title">Structured Intake to <span>Prioritized Queue in 60s</span></h2>
+          <p class="slide-subtitle">Zero hardware needed. Operates seamlessly on existing patient smartphones and clinic tablets.</p>
+        </div>
+
+        <div class="grid-3col">
+          <div class="step-box-deck">
+            <div class="step-num-circle">1</div>
+            <h4>Patient Scans Desk QR</h4>
+            <p>Upon arrival, patient scans a desk QR code. Zero app downloads. Opens instantly in mobile browser.</p>
+          </div>
+
+          <div class="step-box-deck">
+            <div class="step-num-circle">2</div>
+            <h4>60-Sec Symptom Check</h4>
+            <p>Patient answers structured clinical questions: chief complaint, onset duration, fever level, red-flag symptoms.</p>
+          </div>
+
+          <div class="step-box-deck">
+            <div class="step-num-circle">3</div>
+            <h4>Doctor Priority Queue</h4>
+            <p>Algorithm computes recommended priority score (Emergency/Red/Amber/Green). Doctor sees structured summary before consultation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer-meta">
+        <span>Patients see their real-time token status; Doctor receives structured pre-consultation insights.</span>
+        <span>Slide 3 / 7</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: Doctor Console & 100% Control -->
+    <div class="slide" id="slide-4">
+      <div class="slide-header">
+        <div class="brand-group">
+          <div class="brand-name">SwasthAI</div>
+        </div>
+        <div class="slide-tag">Doctor Console & Safety</div>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div>
+            <h2 class="slide-title" style="font-size:30px;">Doctor Retains <span>100% Final Authority</span></h2>
+            <p class="slide-subtitle" style="margin-top:8px;">
+              SwasthAI is an operational assistant, not a diagnostic engine. It surfaces critical walk-ins while keeping you in complete control.
+            </p>
+
+            <div style="margin-top:16px; display:flex; flex-direction:column; gap:8px;">
+              <div class="feature-card card-success" style="padding:12px 16px;">
+                <h4 style="font-size:14px; margin:0;">🔒 Absolute Override Authority</h4>
+                <p style="font-size:12px; margin-top:2px;">Reorder, bump, or group patients with a single click at any time.</p>
+              </div>
+              <div class="feature-card card-success" style="padding:12px 16px;">
+                <h4 style="font-size:14px; margin:0;">🩺 Pre-Consultation Summary</h4>
+                <p style="font-size:12px; margin-top:2px;">See chief complaint, duration, and red flags before opening the door.</p>
+              </div>
+              <div class="feature-card card-success" style="padding:12px 16px;">
+                <h4 style="font-size:14px; margin:0;">📶 Offline-First Resilience</h4>
+                <p style="font-size:12px; margin-top:2px;">Continues running locally during clinic Wi-Fi drops.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mock UI -->
+          <div class="mock-queue">
+            <div style="font-size:11px; font-weight:700; color:#38bdf8; text-transform:uppercase; letter-spacing:1px;">
+              Live Clinic Console
+            </div>
+            
+            <div class="queue-row queue-row-alert">
+              <div class="patient-meta">
+                <h5>#104 — Aarav Sharma (4y)</h5>
+                <p>High Fever (103.5°F) · Lethargy · 2 Days</p>
+              </div>
+              <span class="badge-pill badge-emergency">🚨 Emergency</span>
+            </div>
+
+            <div class="queue-row">
+              <div class="patient-meta">
+                <h5>#102 — Rajesh Verma (42y)</h5>
+                <p>Severe Ankle Trauma · Inability to bear weight</p>
+              </div>
+              <span class="badge-pill badge-urgent">🔴 Urgent</span>
+            </div>
+
+            <div class="queue-row">
+              <div class="patient-meta">
+                <h5>#101 — Meena Patel (29y)</h5>
+                <p>Routine Medication Refill · Chronic follow-up</p>
+              </div>
+              <span class="badge-pill badge-routine">🟢 Routine</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer-meta">
+        <span>Boundary: SwasthAI does not diagnose or prescribe. It organizes OPD queue transparency.</span>
+        <span>Slide 4 / 7</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: Specialty-Specific Clinical Workflows -->
+    <div class="slide" id="slide-5">
+      <div class="slide-header">
+        <div class="brand-group">
+          <div class="brand-name">SwasthAI</div>
+        </div>
+        <div class="slide-tag">Specialty Adaptations</div>
+      </div>
+
+      <div class="slide-body">
+        <div>
+          <h2 class="slide-title">Tailored for High-Volume <span>Specialty Practices</span></h2>
+          <p class="slide-subtitle">Customized triage rule trees configured for your clinic's patient demographic.</p>
+        </div>
+
+        <div class="grid-4col">
+          <div class="feature-card">
+            <div class="feature-icon">👶</div>
+            <h4>Pediatrics</h4>
+            <p>Catches febrile seizures, respiratory distress, and dehydration signs instantly.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🦴</div>
+            <h4>Orthopedics</h4>
+            <p>Distinguishes acute fractures and joint dislocations from chronic arthritis reviews.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">👂</div>
+            <h4>ENT & Allergy</h4>
+            <p>Highlights severe epistaxis, foreign body sensation, and acute ear pain walk-ins.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🩺</div>
+            <h4>General Medicine</h4>
+            <p>Surfaces chest tightness, breathing difficulties, and extreme vitals irregularities.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer-meta">
+        <span>Clinics can customize specific question trees and triage thresholds in under 2 hours.</span>
+        <span>Slide 5 / 7</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: Clinic ROI & Operational Impact -->
+    <div class="slide" id="slide-6">
+      <div class="slide-header">
+        <div class="brand-group">
+          <div class="brand-name">SwasthAI</div>
+        </div>
+        <div class="slide-tag">Operational ROI</div>
+      </div>
+
+      <div class="slide-body">
+        <div>
+          <h2 class="slide-title">Measurable Gains for <span>Doctors, Staff & Patients</span></h2>
+          <p class="slide-subtitle">Transform the daily experience of your waiting room from day one.</p>
+        </div>
+
+        <div class="grid-3col">
+          <div class="feature-card card-success">
+            <div class="feature-icon">⏱️</div>
+            <h4>Save 2–3 Mins / Consult</h4>
+            <p>Pre-consultation summary eliminates repetitive symptom extraction, allowing focused clinical examination.</p>
+          </div>
+
+          <div class="feature-card card-success">
+            <div class="feature-icon">🛡️</div>
+            <h4>90% Drop in Lobby Arguments</h4>
+            <p>Transparent queue display eliminates accusations of staff bias or skipped turns.</p>
+          </div>
+
+          <div class="feature-card card-success">
+            <div class="feature-icon">📈</div>
+            <h4>Enhanced Patient Trust</h4>
+            <p>Patients appreciate knowing urgent conditions are spotted immediately rather than ignored.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer-meta">
+        <span>Low friction: Zero app install for patients; zero IT setup for staff.</span>
+        <span>Slide 6 / 7</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: 2-Day Live Pilot & Getting Started -->
+    <div class="slide" id="slide-7">
+      <div class="slide-header">
+        <div class="brand-group">
+          <div class="brand-name">SwasthAI</div>
+        </div>
+        <div class="slide-tag">Start Your Pilot</div>
+      </div>
+
+      <div class="slide-body">
+        <div class="pilot-card">
+          <div class="pilot-details">
+            <div class="hero-badge" style="margin-bottom:8px;">
+              <span>🚀</span> Zero Risk Commercial Offer
+            </div>
+            <h3>Free 2-Day Live Clinic Trial</h3>
+            <p>
+              Test SwasthAI during your busiest morning and evening OPD sessions.<br>
+              <strong>₹0 Setup Fee · No Hardware Required · 10-Minute Reception Onboarding.</strong>
+            </p>
+
+            <div style="margin-top:14px; font-size:13px; color:#a7f3d0; line-height:1.6;">
+              📞 Direct Contact: <strong>+91 9140721395</strong> (Sankalp Mishra)<br>
+              🌐 Official Portal: <a href="https://swasthai-three.vercel.app/" target="_blank" style="color:#38bdf8; font-weight:700;">swasthai-three.vercel.app</a>
+            </div>
+          </div>
+
+          <div class="qr-deck-frame">
+            <!-- Scannable Render QR pointing to https://swasthai-2tv5.onrender.com/ -->
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fswasthai-2tv5.onrender.com%2F&margin=8&color=041310" alt="Scan to Test Live App">
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer-meta">
+        <span>Scan the QR code above on your phone to experience the live patient triage intake right now.</span>
+        <span>Slide 7 / 7</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 7;
+
+    function showSlide(index) {
+      if (index < 1) index = 1;
+      if (index > totalSlides) index = totalSlides;
+      currentSlide = index;
+
+      document.querySelectorAll('.slide').forEach((s, idx) => {
+        s.classList.toggle('active', idx + 1 === currentSlide);
+      });
+
+      document.getElementById('slideNum').innerText = `Slide ${currentSlide} of ${totalSlides}`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) showSlide(currentSlide - 1);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+  </script>
+
+</body>
+</html>
