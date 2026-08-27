@@ -41,18 +41,8 @@ export function normalizePhoneNumber(rawInput: string | undefined | null): Phone
     };
   }
 
-  // Case 1: 10-digit Indian Mobile Number (e.g. 9822038038)
+  // Case 1: 10-digit Indian Phone Number (mobile or clinic landline)
   if (digitsOnly.length === 10) {
-    const firstDigit = digitsOnly[0];
-    if (!["6", "7", "8", "9"].includes(firstDigit)) {
-      return {
-        isValid: false,
-        normalizedPhone: "",
-        countryCode: "+91",
-        nationalNumber: digitsOnly,
-        error: `Invalid Indian mobile number: must start with 6, 7, 8, or 9 (got ${firstDigit})`
-      };
-    }
     return {
       isValid: true,
       normalizedPhone: `+91${digitsOnly}`,
@@ -103,13 +93,29 @@ export function normalizePhoneNumber(rawInput: string | undefined | null): Phone
     };
   }
 
+  // Case 4: 10-12 digit Indian landline format (e.g. 020-27654321, 912027654321)
+  if (digitsOnly.length >= 10 && digitsOnly.length <= 12) {
+    let national = digitsOnly;
+    if (national.startsWith("91") && national.length >= 11) {
+      national = national.slice(2);
+    } else if (national.startsWith("0")) {
+      national = national.slice(1);
+    }
+    return {
+      isValid: true,
+      normalizedPhone: `+91${national}`,
+      countryCode: "+91",
+      nationalNumber: national
+    };
+  }
+
   // Other length / international formats
   return {
     isValid: false,
     normalizedPhone: "",
     countryCode: "",
     nationalNumber: digitsOnly,
-    error: `Unsupported phone number length (${digitsOnly.length} digits). Expected 10-digit Indian mobile number.`
+    error: `Unsupported phone number length (${digitsOnly.length} digits). Expected Indian phone number.`
   };
 }
 
