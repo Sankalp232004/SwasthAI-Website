@@ -1213,6 +1213,7 @@ export async function main() {
     console.log(`  Real emails sent today (Asia/Kolkata): ${sentTodayIndia}/${CONFIG.maxEmailsPerDay}\n`);
 
     let readyCount = 0;
+    let sessionSentCount = 0;
     for (const prospect of PROSPECTS) {
       if (sessionSentCount >= 10) {
         console.log("\n  ⏸️  Batch limit of 10 reached for this session. Stopping.");
