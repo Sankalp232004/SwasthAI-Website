@@ -924,7 +924,7 @@ export default function AdminAnalyticsClient() {
                         <tr>
                           <th className="p-3.5">Acquisition Source</th>
                           <th className="p-3.5 text-center">Total Visitors</th>
-                          <th className="p-3.5 text-center">Engaged Readers (>30s)</th>
+                          <th className="p-3.5 text-center">Engaged Readers (&gt;30s)</th>
                           <th className="p-3.5 text-center">Blog Visitors</th>
                           <th className="p-3.5 text-center">WhatsApp Demo Clicks</th>
                           <th className="p-3.5 text-center">Conversion Rate</th>
