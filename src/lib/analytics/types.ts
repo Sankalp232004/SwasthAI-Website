@@ -58,7 +58,8 @@ export type ContentOpportunityCategory =
   | "NEEDS BETTER CTA"
   | "NEEDS MORE TRAFFIC"
   | "LOW PRIORITY"
-  | "UNDERPERFORMING";
+  | "UNDERPERFORMING"
+  | "NEW";
 
 export type TrendStatus = "RISING" | "STABLE" | "DECLINING" | "NEW" | "UNKNOWN";
 
