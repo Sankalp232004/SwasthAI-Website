@@ -22,8 +22,9 @@ export default function PrivacyPage() {
             SwasthAI collects information necessary to perform medical intake, calculate triage urgency scores, and facilitate clinic queue management:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-sm">
-            <li><strong>Patient Intake Data:</strong> Name, age, gender, phone number, chief symptoms, pain score, and vital signs provided during voluntary intake.</li>
+            <li><strong>Patient Intake Data:</strong> Name, age, gender, phone number, chief symptoms, pain score, and vital signs provided during voluntary intake at clinic premises.</li>
             <li><strong>Clinic Operational Data:</strong> Clinic registration details, queue timestamps, and practitioner preferences.</li>
+            <li><strong>Website & Blog Analytics:</strong> Anonymous, first-party visitor interaction metrics (page views, reading time, scroll depth, and demo request clicks) used solely to improve educational content. No patient health information or personal identities are collected or linked to website browsing.</li>
           </ul>
         </section>
 

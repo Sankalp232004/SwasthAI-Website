@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { MessageSquare, Mail, MapPin, CheckCircle2, Send, Phone, BookOpen } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
+import { trackEvent } from "@/lib/analytics/client";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -19,6 +20,14 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    trackEvent("contact_form_submit", {
+      path: "/contact",
+      meta: {
+        clinicName: formData.clinicName,
+        hasPhone: Boolean(formData.phone),
+        hasEmail: Boolean(formData.email)
+      }
+    });
   };
 
   return (

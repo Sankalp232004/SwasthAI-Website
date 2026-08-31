@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import AnalyticsTracker from "@/components/analytics/AnalyticsTracker";
 import { SITE_CONFIG } from "@/lib/config";
 
 const inter = Inter({
@@ -114,6 +115,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
+        <AnalyticsTracker />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
