@@ -96,14 +96,23 @@ export default function AdminAnalyticsClient() {
     }
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Default passkey for clinic founder / operator (swasthai-ops)
-    if (passcode === "swasthai-ops" || passcode === "admin123" || passcode === "swasthai2026") {
-      setIsAuthenticated(true);
-      sessionStorage.setItem("_swasthai_admin_auth", "true");
-      setPassError(false);
-    } else {
+    try {
+      const res = await fetch("/api/admin/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ passkey: passcode }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setIsAuthenticated(true);
+        sessionStorage.setItem("_swasthai_admin_auth", "true");
+        setPassError(false);
+      } else {
+        setPassError(true);
+      }
+    } catch {
       setPassError(true);
     }
   };
@@ -278,7 +287,7 @@ export default function AdminAnalyticsClient() {
               />
               {passError && (
                 <span className="block text-xs text-red-400 mt-1 font-medium">
-                  Invalid passkey. (Hint: swasthai-ops)
+                  Invalid passkey.
                 </span>
               )}
             </div>

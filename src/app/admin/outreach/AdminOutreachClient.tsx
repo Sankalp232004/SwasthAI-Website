@@ -76,14 +76,24 @@ export default function AdminOutreachClient() {
     }
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (passkey === 'swasthai-ops') {
-      sessionStorage.setItem('swasthai_ops_auth', 'authorized');
-      setIsAuthenticated(true);
-      fetchOutreachData();
-    } else {
-      alert('Invalid founder passkey.');
+    try {
+      const res = await fetch('/api/admin/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ passkey }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        sessionStorage.setItem('swasthai_ops_auth', 'authorized');
+        setIsAuthenticated(true);
+        fetchOutreachData();
+      } else {
+        alert('Invalid founder passkey.');
+      }
+    } catch {
+      alert('Authentication error.');
     }
   };
 
