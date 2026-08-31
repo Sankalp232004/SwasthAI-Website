@@ -1,6 +1,6 @@
 [
   {
-    "prospectName": "TEST — Dr. Ashish Ranade",
+    "prospectName": "TEST \u2014 Dr. Ashish Ranade",
     "clinicName": "Strong Bones Clinic",
     "recipientEmail": "swasthai.founder@gmail.com",
     "sentAt": "2026-08-21T09:43:24.286Z",
@@ -10,7 +10,7 @@
     "error": "validation_error: The swasthai-three.vercel.app domain is not verified. Please, add and verify your domain on https://resend.com/domains"
   },
   {
-    "prospectName": "TEST — Dr. Ashish Ranade",
+    "prospectName": "TEST \u2014 Dr. Ashish Ranade",
     "clinicName": "Strong Bones Clinic",
     "recipientEmail": "swasthai.founder@gmail.com",
     "sentAt": "2026-08-21T11:12:27.617Z",
@@ -20,7 +20,7 @@
     "error": null
   },
   {
-    "prospectName": "TEST — Dr. Ashish Ranade",
+    "prospectName": "TEST \u2014 Dr. Ashish Ranade",
     "clinicName": "Strong Bones Clinic",
     "recipientEmail": "swasthai.founder@gmail.com",
     "sentAt": "2026-08-21T11:26:20.767Z",
@@ -31,7 +31,7 @@
     "campaign": "swasthai_cold_outreach_august_2026"
   },
   {
-    "prospectName": "TEST — Dr. Ashish Ranade",
+    "prospectName": "TEST \u2014 Dr. Ashish Ranade",
     "clinicName": "Strong Bones Clinic",
     "recipientEmail": "swasthai.founder@gmail.com",
     "sentAt": "2026-08-21T12:48:15.316Z",
@@ -42,7 +42,7 @@
     "campaign": "swasthai_cold_outreach_august_2026"
   },
   {
-    "prospectName": "TEST — Dr. Ashish Ranade",
+    "prospectName": "TEST \u2014 Dr. Ashish Ranade",
     "clinicName": "Strong Bones Clinic",
     "recipientEmail": "swasthai.founder@gmail.com",
     "sentAt": "2026-08-21T12:56:50.711Z",
@@ -98,10 +98,10 @@
   },
   {
     "prospectName": "Dr. Atul Bhaskar",
-    "clinicName": "Children’s Speciality Orthopaedic Clinic",
+    "clinicName": "Children\u2019s Speciality Orthopaedic Clinic",
     "recipientEmail": "arb_25@yahoo.com",
     "sentAt": "2026-08-21T13:01:03.191Z",
-    "subject": "Question about pediatric intake at Children’s Speciality Orthopaedic Clinic",
+    "subject": "Question about pediatric intake at Children\u2019s Speciality Orthopaedic Clinic",
     "status": "SUCCESS",
     "messageId": "<202608211301.14946859495@smtp-relay.mailin.fr>",
     "error": null,
@@ -142,10 +142,10 @@
   },
   {
     "prospectName": "Dr. Chakradhar Reddy",
-    "clinicName": "Dr. Chakri’s Orthopedic Clinic",
+    "clinicName": "Dr. Chakri\u2019s Orthopedic Clinic",
     "recipientEmail": "drchakrisclinic@gmail.com",
     "sentAt": "2026-08-21T13:01:46.553Z",
-    "subject": "OPD walk-in prioritization at Dr. Chakri’s Orthopedic Clinic",
+    "subject": "OPD walk-in prioritization at Dr. Chakri\u2019s Orthopedic Clinic",
     "status": "SUCCESS",
     "messageId": "<202608211301.73706527734@smtp-relay.mailin.fr>",
     "error": null,
@@ -219,10 +219,10 @@
   },
   {
     "prospectName": "Dr. Skand Kumar",
-    "clinicName": "Dr. Skand Kumar’s Ortho Clinic",
+    "clinicName": "Dr. Skand Kumar\u2019s Ortho Clinic",
     "recipientEmail": "skandkumar@gmail.com",
     "sentAt": "2026-08-21T13:10:04.639Z",
-    "subject": "OPD walk-in prioritization at Dr. Skand Kumar’s Ortho Clinic",
+    "subject": "OPD walk-in prioritization at Dr. Skand Kumar\u2019s Ortho Clinic",
     "status": "SUCCESS",
     "messageId": "<202608211310.75966978988@smtp-relay.mailin.fr>",
     "error": null,
@@ -241,10 +241,10 @@
   },
   {
     "prospectName": "Dr. Sandeep Kadam",
-    "clinicName": "Radhey Children’s Clinic",
+    "clinicName": "Radhey Children\u2019s Clinic",
     "recipientEmail": "radheychildrensclinic04@gmail.com",
     "sentAt": "2026-08-21T13:10:05.253Z",
-    "subject": "Question about pediatric intake at Radhey Children’s Clinic",
+    "subject": "Question about pediatric intake at Radhey Children\u2019s Clinic",
     "status": "SUCCESS",
     "messageId": "<202608211310.48093761497@smtp-relay.mailin.fr>",
     "error": null,
@@ -648,10 +648,10 @@
   },
   {
     "prospectName": "Dr. Sparsh Medical Team",
-    "clinicName": "Sparsh Children’s Hospital",
+    "clinicName": "Sparsh Children\u2019s Hospital",
     "recipientEmail": "sparshchildrenhospital0118@gmail.com",
     "sentAt": "2026-08-21T13:22:20.409Z",
-    "subject": "Question about pediatric intake at Sparsh Children’s Hospital",
+    "subject": "Question about pediatric intake at Sparsh Children\u2019s Hospital",
     "status": "SUCCESS",
     "messageId": "<202608211322.53368571976@smtp-relay.mailin.fr>",
     "error": null,
@@ -747,10 +747,10 @@
   },
   {
     "prospectName": "Dr. Happy Hearts Team",
-    "clinicName": "Happy Hearts Children’s Clinic",
+    "clinicName": "Happy Hearts Children\u2019s Clinic",
     "recipientEmail": "happyheartschildrensclinic@gmail.com",
     "sentAt": "2026-08-21T13:28:08.964Z",
-    "subject": "Question about pediatric intake at Happy Hearts Children’s Clinic",
+    "subject": "Question about pediatric intake at Happy Hearts Children\u2019s Clinic",
     "status": "SUCCESS",
     "messageId": "<202608211328.40494255231@smtp-relay.mailin.fr>",
     "error": null,
@@ -802,10 +802,10 @@
   },
   {
     "prospectName": "Dr. R.J. Jain",
-    "clinicName": "Jain’s Kid Orthocare",
+    "clinicName": "Jain\u2019s Kid Orthocare",
     "recipientEmail": "drorthorj@gmail.com",
     "sentAt": "2026-08-21T13:28:10.470Z",
-    "subject": "Question about pediatric intake at Jain’s Kid Orthocare",
+    "subject": "Question about pediatric intake at Jain\u2019s Kid Orthocare",
     "status": "SUCCESS",
     "messageId": "<202608211328.68862037934@smtp-relay.mailin.fr>",
     "error": null,
@@ -821,5 +821,17 @@
     "messageId": "<202608211328.82706804167@smtp-relay.mailin.fr>",
     "error": null,
     "campaign": "swasthai_cold_outreach_august_2026"
+  },
+  {
+    "prospectName": "TEST - Dr. Ashish Ranade",
+    "doctorName": "Dr. Ashish Ranade",
+    "clinicName": "Strong Bones Clinic",
+    "recipientEmail": "swasthai.founder@gmail.com",
+    "sentAt": "2026-08-31T10:55:48.637541Z",
+    "subject": "[TEST] Question about pediatric intake at Strong Bones Clinic",
+    "status": "TEST",
+    "brevoMessageId": "<202608311055.37878359709@smtp-relay.mailin.fr>",
+    "error": null,
+    "campaign": "swasthai_cold_outreach_test"
   }
 ]
