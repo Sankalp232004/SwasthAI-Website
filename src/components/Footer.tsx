@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MessageSquare, Mail, MapPin, ExternalLink, ShieldCheck, Globe, Phone } from "lucide-react";
+import { MessageSquare, Mail, Globe, Phone, Play, BookOpen, ShieldCheck, ExternalLink } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
 
 export default function Footer() {
@@ -46,6 +46,28 @@ export default function Footer() {
               </a>
 
               <a
+                href="https://www.youtube.com/watch?v=27o-mGdCSUQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-red-500/20 hover:bg-red-600 text-red-400 hover:text-white flex items-center justify-center transition-colors"
+                title="SwasthAI YouTube Demo Video"
+                aria-label="YouTube Demo"
+              >
+                <Play className="w-4 h-4 fill-current" />
+              </a>
+
+              <a
+                href="https://medium.com/@swasthai.founder"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-emerald-500/20 hover:bg-emerald-600 text-emerald-400 hover:text-white flex items-center justify-center transition-colors"
+                title="SwasthAI Articles on Medium"
+                aria-label="Medium"
+              >
+                <BookOpen className="w-4 h-4" />
+              </a>
+
+              <a
                 href={`mailto:${SITE_CONFIG.email}`}
                 className="w-9 h-9 rounded-lg bg-teal-500/20 hover:bg-teal-600 text-teal-400 hover:text-white flex items-center justify-center transition-colors"
                 title="Email Support"
@@ -81,14 +103,16 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-xs font-bold text-teal-400 uppercase tracking-wider mb-4">Company & Legal</h4>
+            <h4 className="text-xs font-bold text-teal-400 uppercase tracking-wider mb-4">Company & Resources</h4>
             <ul className="space-y-2.5 text-sm">
               <li><Link href="/about" className="hover:text-white transition-colors">About Us & Founder</Link></li>
               <li><Link href="/blog" className="hover:text-white transition-colors">Blog & Case Studies</Link></li>
+              <li><a href="https://medium.com/@swasthai.founder" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1">Medium Articles <ExternalLink className="w-3 h-3 text-gray-500" /></a></li>
               <li><Link href="/contact" className="hover:text-white transition-colors">Contact Support</Link></li>
               <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
               <li><Link href="/admin/analytics" className="text-teal-400 hover:text-teal-300 font-semibold transition-colors">Ops Analytics 🔒</Link></li>
+              <li><Link href="/admin/outreach" className="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors">Outreach Hub 🔒</Link></li>
             </ul>
           </div>
 
@@ -140,7 +164,9 @@ export default function Footer() {
           <div className="flex items-center space-x-4">
             <a href={waLink} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WhatsApp Demo</a>
             <span>•</span>
-            <a href={SITE_CONFIG.url} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Website</a>
+            <a href="https://www.youtube.com/watch?v=27o-mGdCSUQ" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">YouTube Video</a>
+            <span>•</span>
+            <a href="https://medium.com/@swasthai.founder" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Medium</a>
             <span>•</span>
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
             <span>•</span>
