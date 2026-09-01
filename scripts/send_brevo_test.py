@@ -32,24 +32,28 @@ specialty = "Pediatric Orthopedics"
 city = "Pune"
 recipient_email = "swasthai.founder@gmail.com"
 
-subject = "[TEST] Question about pediatric intake at Strong Bones Clinic"
+subject = "[TEST] Registration is getting easier. What happens next?"
 
 plain_text = f"""Dr. Ashish Ranade,
 
-I had one question about your OPD.
+India just crossed 25 crore digital OPD registrations through QR based Scan and Register.
 
-When a new walk in arrives after several patients are already waiting, how does your reception team decide whether that patient should be seen before someone who arrived earlier?
+It made me think about a smaller problem inside the clinic.
 
-I am building SwasthAI for exactly this workflow. A patient scans a QR code, answers a few short questions, and the clinic gets a recommended priority order. The doctor remains fully in control and can change the queue at any time.
+A patient can now register digitally, but once several patients are waiting, the clinic still has to decide who should be seen first.
 
-QR based OPD registration is already becoming normal across Indian healthcare. I am trying to solve the next small problem, which is what happens after the patient registers.
+That is what I am working on with SwasthAI.
 
-Would you like me to send you a 2 minute video showing it?
+Patients scan a QR code and answer a few short questions about why they came in. The clinic then gets a recommended priority order before consultation, while the doctor stays completely in control.
+
+I am looking for a few clinics to test this with real OPD workflows.
+
+Would you like me to send you a 2 minute video?
 
 Sankalp Mishra
 Founder, SwasthAI
 
-https://swasthai-three.vercel.app/?utm_source=email&utm_medium=cold_outreach&utm_campaign=swasthai_cold_outreach_test
+https://swasthai-three.vercel.app/?utm_source=email&utm_medium=cold_outreach&utm_campaign=scan_register_25cr_milestone
 
 If you would rather not receive messages from me, just reply "no" and I will not follow up."""
 
@@ -63,18 +67,22 @@ html_content = f"""<!DOCTYPE html>
   <div style="max-width: 600px; margin: 0 auto; padding: 0 20px;">
     <p style="margin: 0 0 16px 0;">Dr. Ashish Ranade,</p>
     
-    <p style="margin: 0 0 16px 0;">I had one question about your OPD.</p>
+    <p style="margin: 0 0 16px 0;">India just crossed 25 crore digital OPD registrations through QR based Scan and Register.</p>
     
-    <p style="margin: 0 0 16px 0;">When a new walk in arrives after several patients are already waiting, how does your reception team decide whether that patient should be seen before someone who arrived earlier?</p>
+    <p style="margin: 0 0 16px 0;">It made me think about a smaller problem inside the clinic.</p>
     
-    <p style="margin: 0 0 16px 0;">I am building SwasthAI for exactly this workflow. A patient scans a QR code, answers a few short questions, and the clinic gets a recommended priority order. The doctor remains fully in control and can change the queue at any time.</p>
+    <p style="margin: 0 0 16px 0;">A patient can now register digitally, but once several patients are waiting, the clinic still has to decide who should be seen first.</p>
     
-    <p style="margin: 0 0 16px 0;">QR based OPD registration is already becoming normal across Indian healthcare. I am trying to solve the next small problem, which is what happens after the patient registers.</p>
+    <p style="margin: 0 0 16px 0;">That is what I am working on with SwasthAI.</p>
     
-    <p style="margin: 0 0 20px 0;">Would you like me to send you a 2 minute video showing it?</p>
+    <p style="margin: 0 0 16px 0;">Patients scan a QR code and answer a few short questions about why they came in. The clinic then gets a recommended priority order before consultation, while the doctor stays completely in control.</p>
+    
+    <p style="margin: 0 0 16px 0;">I am looking for a few clinics to test this with real OPD workflows.</p>
+    
+    <p style="margin: 0 0 20px 0;">Would you like me to send you a 2 minute video?</p>
     
     <p style="margin: 0 0 4px 0;">Sankalp Mishra<br>Founder, SwasthAI</p>
-    <p style="margin: 0 0 24px 0;"><a href="https://swasthai-three.vercel.app/?utm_source=email&utm_medium=cold_outreach&utm_campaign=swasthai_cold_outreach_test" style="color: #008080; text-decoration: underline;">https://swasthai-three.vercel.app/</a></p>
+    <p style="margin: 0 0 24px 0;"><a href="https://swasthai-three.vercel.app/?utm_source=email&utm_medium=cold_outreach&utm_campaign=scan_register_25cr_milestone" style="color: #008080; text-decoration: underline;">https://swasthai-three.vercel.app/</a></p>
     
     <p style="margin: 32px 0 0 0; font-size: 12px; color: #777777; border-top: 1px solid #eeeeee; padding-top: 12px;">If you would rather not receive messages from me, just reply &quot;no&quot; and I will not follow up.</p>
   </div>
@@ -105,7 +113,7 @@ payload = {
     "subject": subject,
     "textContent": plain_text,
     "htmlContent": html_content,
-    "tags": ["swasthai_cold_outreach_test"]
+    "tags": ["scan_register_25cr_milestone"]
 }
 
 req = urllib.request.Request(
@@ -130,7 +138,7 @@ try:
         print(f"Sender: Sankalp Mishra <{brevo_sender}>")
         print(f"Recipient: {recipient_email}")
         print(f"Subject: {subject}")
-        print(f"Website Link: https://swasthai-three.vercel.app/?utm_source=email&utm_medium=cold_outreach&utm_campaign=swasthai_cold_outreach_test")
+        print(f"Website Link: https://swasthai-three.vercel.app/?utm_source=email&utm_medium=cold_outreach&utm_campaign=scan_register_25cr_milestone")
         print(f"Opt-out Notice: Present")
         print("==================================================")
         
@@ -148,12 +156,12 @@ try:
             "doctorName": doctor_name,
             "clinicName": clinic_name,
             "recipientEmail": recipient_email,
-            "sentAt": datetime.utcnow().isoformat() + "Z",
+            "sentAt": datetime.now().isoformat() + "Z",
             "subject": subject,
             "status": "TEST",
             "brevoMessageId": message_id,
             "error": None,
-            "campaign": "swasthai_cold_outreach_test"
+            "campaign": "scan_register_25cr_milestone"
         })
         
         with open(log_file, 'w', encoding='utf-8') as lf:

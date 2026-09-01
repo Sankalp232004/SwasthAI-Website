@@ -1,11 +1,11 @@
 /**
- * SwasthAI Master Cold Email Template & Specialty Personalization Engine
+ * SwasthAI Master Research-Driven Cold Email Template & Specialty Engine
  * 
  * Strict Guidelines:
- * - NO DASHES anywhere in the body text (no '-', '—', '–', or hyphenated words). Use commas or periods.
+ * - NO DASHES anywhere in body text (use commas, periods, question marks).
  * - 100-140 words ideally (maximum 170 words).
  * - Founder-written tone (Sankalp Mishra).
- * - Single low-pressure CTA.
+ * - Single low-pressure CTA: "Would you like me to send you a 2 minute video?"
  * - Clean personal HTML and exact plain text.
  */
 
@@ -19,61 +19,91 @@ export interface TemplateParams {
   campaignTag?: string;
 }
 
-export function generateSubjectLines(doctorName: string, clinicName: string, specialty: string): { A: string; B: string; C: string } {
+export function generateSubjectLines(doctorName: string, clinicName: string, specialty: string): {
+  A: string;
+  B: string;
+  C: string;
+  D: string;
+  E: string;
+} {
   const specLower = specialty.toLowerCase();
-  
+
   if (specLower.includes("pediatric")) {
     return {
-      A: `Question about pediatric intake at ${clinicName}`,
-      B: `Your pediatric OPD queue`,
-      C: `One question about walk ins`
+      A: `Registration is getting easier. What happens next?`,
+      B: `Question about pediatric intake at ${clinicName}`,
+      C: `What happens after registration?`,
+      D: `Your pediatric OPD queue`,
+      E: `One question about walk ins at ${clinicName}`
     };
   }
-  
+
   if (specLower.includes("ortho")) {
     return {
-      A: `OPD walk in prioritization at ${clinicName}`,
-      B: `A question about your OPD`,
-      C: `Walk in flow at ${clinicName}`
+      A: `Registration is getting easier. What happens next?`,
+      B: `OPD walk in prioritization at ${clinicName}`,
+      C: `What happens after registration?`,
+      D: `A question about your OPD queue`,
+      E: `Walk in flow at ${clinicName}`
     };
   }
-  
+
   if (specLower.includes("derma") || specLower.includes("skin")) {
     return {
-      A: `Question about skin OPD intake at ${clinicName}`,
-      B: `Your OPD queue`,
-      C: `A question about walk ins`
+      A: `Registration is getting easier. What happens next?`,
+      B: `Question about skin OPD intake at ${clinicName}`,
+      C: `What happens after registration?`,
+      D: `Your OPD queue`,
+      E: `One question about walk ins at ${clinicName}`
     };
   }
-  
+
   if (specLower.includes("ent")) {
     return {
-      A: `Question about ENT walk in flow at ${clinicName}`,
-      B: `A question about your OPD`,
-      C: `Your OPD queue`
+      A: `Registration is getting easier. What happens next?`,
+      B: `Question about ENT walk in flow at ${clinicName}`,
+      C: `What happens after registration?`,
+      D: `A question about your OPD queue`,
+      E: `One question about walk ins`
     };
   }
 
   if (specLower.includes("eye") || specLower.includes("ophthal")) {
     return {
-      A: `Question about eye OPD intake at ${clinicName}`,
-      B: `A question about your OPD`,
-      C: `Walk in flow at ${clinicName}`
+      A: `Registration is getting easier. What happens next?`,
+      B: `Question about eye OPD intake at ${clinicName}`,
+      C: `What happens after registration?`,
+      D: `Your eye OPD queue`,
+      E: `Walk in flow at ${clinicName}`
+    };
+  }
+
+  if (specLower.includes("dental") || specLower.includes("dentist")) {
+    return {
+      A: `Registration is getting easier. What happens next?`,
+      B: `A question about dental walk in intake at ${clinicName}`,
+      C: `What happens after registration?`,
+      D: `Your OPD queue`,
+      E: `One question about walk ins`
     };
   }
 
   if (specLower.includes("gynae") || specLower.includes("women")) {
     return {
-      A: `Question about patient intake at ${clinicName}`,
-      B: `A question about your OPD`,
-      C: `Your OPD queue`
+      A: `Registration is getting easier. What happens next?`,
+      B: `Question about patient intake at ${clinicName}`,
+      C: `What happens after registration?`,
+      D: `A question about your OPD queue`,
+      E: `One question about walk ins`
     };
   }
 
   return {
-    A: `A question about your OPD`,
-    B: `Your OPD queue`,
-    C: `One question about walk ins`
+    A: `Registration is getting easier. What happens next?`,
+    B: `A question about your OPD`,
+    C: `What happens after registration?`,
+    D: `Your OPD queue`,
+    E: `One question about walk ins`
   };
 }
 
@@ -85,32 +115,42 @@ export function generateEmailContent(params: TemplateParams): {
   const subjects = generateSubjectLines(params.doctorName, params.clinicName, params.specialty);
   const subject = subjects.A;
 
-  // Clean doctor name formatting (Ensure Dr. prefix)
   let cleanDocName = params.doctorName.trim();
   if (!cleanDocName.toLowerCase().startsWith("dr.") && !cleanDocName.toLowerCase().startsWith("dr ")) {
     cleanDocName = `Dr. ${cleanDocName}`;
   }
 
-  // Hook without any dashes
-  const hook = params.campaignHook 
-    ? params.campaignHook.replace(/[-—–]/g, ", ")
-    : "QR based OPD registration is already becoming normal across Indian healthcare. I am trying to solve the next small problem, which is what happens after the patient registers.";
-
-  const utmCampaign = params.campaignTag || "india_clinics_aug_2026";
+  const utmCampaign = params.campaignTag || "scan_register_25cr_milestone";
   const websiteUrl = `https://swasthai-three.vercel.app/?utm_source=email&utm_medium=cold_outreach&utm_campaign=${encodeURIComponent(utmCampaign)}`;
 
-  // Plain Text Version (Zero dashes)
+  // Specialty specific context injection if customized
+  const specLower = params.specialty.toLowerCase();
+  let specialtyLine = "A patient can now register digitally, but once several patients are waiting, the clinic still has to decide who should be seen first.";
+  
+  if (specLower.includes("pediatric")) {
+    specialtyLine = "A parent can now register a child digitally, but once several families are waiting, the clinic still has to decide who needs to be seen first.";
+  } else if (specLower.includes("ortho")) {
+    specialtyLine = "A patient can now register digitally, but when acute injuries and routine follow ups arrive together, the clinic still has to decide who should be seen first.";
+  } else if (specLower.includes("ent")) {
+    specialtyLine = "A patient can now register digitally, but when acute ear pain and routine consultations wait in the same queue, the clinic still has to decide who gets seen first.";
+  }
+
+  // Plain Text Version (Zero Dashes Standard)
   const plainText = `${cleanDocName},
 
-I had one question about your OPD.
+India just crossed 25 crore digital OPD registrations through QR based Scan and Register.
 
-When a new walk in arrives after several patients are already waiting, how does your reception team decide whether that patient should be seen before someone who arrived earlier?
+It made me think about a smaller problem inside the clinic.
 
-I am building SwasthAI for exactly this workflow. A patient scans a QR code, answers a few short questions, and the clinic gets a recommended priority order. The doctor remains fully in control and can change the queue at any time.
+${specialtyLine}
 
-${hook}
+That is what I am working on with SwasthAI.
 
-Would you like me to send you a 2 minute video showing it?
+Patients scan a QR code and answer a few short questions about why they came in. The clinic then gets a recommended priority order before consultation, while the doctor stays completely in control.
+
+I am looking for a few clinics to test this with real OPD workflows.
+
+Would you like me to send you a 2 minute video?
 
 Sankalp Mishra
 Founder, SwasthAI
@@ -130,15 +170,19 @@ If you would rather not receive messages from me, just reply "no" and I will not
   <div style="max-width: 600px; margin: 0 auto; padding: 0 20px;">
     <p style="margin: 0 0 16px 0;">${cleanDocName},</p>
     
-    <p style="margin: 0 0 16px 0;">I had one question about your OPD.</p>
+    <p style="margin: 0 0 16px 0;">India just crossed 25 crore digital OPD registrations through QR based Scan and Register.</p>
     
-    <p style="margin: 0 0 16px 0;">When a new walk in arrives after several patients are already waiting, how does your reception team decide whether that patient should be seen before someone who arrived earlier?</p>
+    <p style="margin: 0 0 16px 0;">It made me think about a smaller problem inside the clinic.</p>
     
-    <p style="margin: 0 0 16px 0;">I am building SwasthAI for exactly this workflow. A patient scans a QR code, answers a few short questions, and the clinic gets a recommended priority order. The doctor remains fully in control and can change the queue at any time.</p>
+    <p style="margin: 0 0 16px 0;">${specialtyLine}</p>
     
-    <p style="margin: 0 0 16px 0;">${hook}</p>
+    <p style="margin: 0 0 16px 0;">That is what I am working on with SwasthAI.</p>
     
-    <p style="margin: 0 0 20px 0;">Would you like me to send you a 2 minute video showing it?</p>
+    <p style="margin: 0 0 16px 0;">Patients scan a QR code and answer a few short questions about why they came in. The clinic then gets a recommended priority order before consultation, while the doctor stays completely in control.</p>
+    
+    <p style="margin: 0 0 16px 0;">I am looking for a few clinics to test this with real OPD workflows.</p>
+    
+    <p style="margin: 0 0 20px 0;">Would you like me to send you a 2 minute video?</p>
     
     <p style="margin: 0 0 4px 0;">Sankalp Mishra<br>Founder, SwasthAI</p>
     <p style="margin: 0 0 24px 0;"><a href="${websiteUrl}" style="color: #008080; text-decoration: underline;">https://swasthai-three.vercel.app/</a></p>
