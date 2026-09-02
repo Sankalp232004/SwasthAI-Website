@@ -25,37 +25,37 @@ if not brevo_api_key:
     print("ERROR: BREVO_API_KEY not found in .env.local")
     exit(1)
 
-# Filled real values for test
+# Real verified prospect data for live test
 doctor_name = "Dr. Ashish Ranade"
 clinic_name = "Strong Bones Clinic"
 specialty = "Pediatric Orthopedics"
 city = "Pune"
 recipient_email = "swasthai.founder@gmail.com"
 
-subject = "[TEST] Registration is getting easier. What happens next?"
+subject = "[TEST] What happens after registration?"
 
 plain_text = f"""Dr. Ashish Ranade,
 
-India just crossed 25 crore digital OPD registrations through QR based Scan and Register.
+India is making OPD registration much faster with QR based registration.
 
-It made me think about a smaller problem inside the clinic.
+But I keep thinking about what happens immediately after that.
 
-A patient can now register digitally, but once several patients are waiting, the clinic still has to decide who should be seen first.
+If five patients are already waiting and a sixth patient walks in with something that may need attention sooner, who decides where that patient goes in the queue?
 
-That is what I am working on with SwasthAI.
+That is the small problem I am building SwasthAI around.
 
-Patients scan a QR code and answer a few short questions about why they came in. The clinic then gets a recommended priority order before consultation, while the doctor stays completely in control.
+Patients answer a few questions after scanning a QR code. The clinic gets a recommended priority order, and the doctor can change it whenever needed.
 
-I am looking for a few clinics to test this with real OPD workflows.
+I am looking for a few clinics to try this with their actual OPD workflow.
 
-Would you like me to send you a 2 minute video?
+Can I send you the 2 minute version?
 
 Sankalp Mishra
 Founder, SwasthAI
 
 https://swasthai-three.vercel.app/?utm_source=email&utm_medium=cold_outreach&utm_campaign=scan_register_25cr_milestone
 
-If you would rather not receive messages from me, just reply "no" and I will not follow up."""
+If you would rather not hear from me, reply "no" and I will not follow up."""
 
 html_content = f"""<!DOCTYPE html>
 <html>
@@ -67,33 +67,33 @@ html_content = f"""<!DOCTYPE html>
   <div style="max-width: 600px; margin: 0 auto; padding: 0 20px;">
     <p style="margin: 0 0 16px 0;">Dr. Ashish Ranade,</p>
     
-    <p style="margin: 0 0 16px 0;">India just crossed 25 crore digital OPD registrations through QR based Scan and Register.</p>
+    <p style="margin: 0 0 16px 0;">India is making OPD registration much faster with QR based registration.</p>
     
-    <p style="margin: 0 0 16px 0;">It made me think about a smaller problem inside the clinic.</p>
+    <p style="margin: 0 0 16px 0;">But I keep thinking about what happens immediately after that.</p>
     
-    <p style="margin: 0 0 16px 0;">A patient can now register digitally, but once several patients are waiting, the clinic still has to decide who should be seen first.</p>
+    <p style="margin: 0 0 16px 0;">If five patients are already waiting and a sixth patient walks in with something that may need attention sooner, who decides where that patient goes in the queue?</p>
     
-    <p style="margin: 0 0 16px 0;">That is what I am working on with SwasthAI.</p>
+    <p style="margin: 0 0 16px 0;">That is the small problem I am building SwasthAI around.</p>
     
-    <p style="margin: 0 0 16px 0;">Patients scan a QR code and answer a few short questions about why they came in. The clinic then gets a recommended priority order before consultation, while the doctor stays completely in control.</p>
+    <p style="margin: 0 0 16px 0;">Patients answer a few questions after scanning a QR code. The clinic gets a recommended priority order, and the doctor can change it whenever needed.</p>
     
-    <p style="margin: 0 0 16px 0;">I am looking for a few clinics to test this with real OPD workflows.</p>
+    <p style="margin: 0 0 16px 0;">I am looking for a few clinics to try this with their actual OPD workflow.</p>
     
-    <p style="margin: 0 0 20px 0;">Would you like me to send you a 2 minute video?</p>
+    <p style="margin: 0 0 20px 0;">Can I send you the 2 minute version?</p>
     
     <p style="margin: 0 0 4px 0;">Sankalp Mishra<br>Founder, SwasthAI</p>
     <p style="margin: 0 0 24px 0;"><a href="https://swasthai-three.vercel.app/?utm_source=email&utm_medium=cold_outreach&utm_campaign=scan_register_25cr_milestone" style="color: #008080; text-decoration: underline;">https://swasthai-three.vercel.app/</a></p>
     
-    <p style="margin: 32px 0 0 0; font-size: 12px; color: #777777; border-top: 1px solid #eeeeee; padding-top: 12px;">If you would rather not receive messages from me, just reply &quot;no&quot; and I will not follow up.</p>
+    <p style="margin: 32px 0 0 0; font-size: 12px; color: #777777; border-top: 1px solid #eeeeee; padding-top: 12px;">If you would rather not hear from me, reply &quot;no&quot; and I will not follow up.</p>
   </div>
 </body>
 </html>"""
 
-# Safety checks
+# Safety checks: Placeholders and Dashes
 assert "{{" not in plain_text and "}}" not in plain_text, "Placeholders found!"
 clean_lines = [l for l in plain_text.split("\n") if "http" not in l]
 for line in clean_lines:
-    assert "—" not in line and "–" not in line and " - " not in line, f"Dash found in line: {line}"
+    assert "—" not in line and "–" not in line and "-" not in line, f"Dash found in line: {line}"
 
 payload = {
     "sender": {
@@ -113,7 +113,7 @@ payload = {
     "subject": subject,
     "textContent": plain_text,
     "htmlContent": html_content,
-    "tags": ["scan_register_25cr_milestone"]
+    "tags": ["scan_register_25cr_milestone", "test_send"]
 }
 
 req = urllib.request.Request(
