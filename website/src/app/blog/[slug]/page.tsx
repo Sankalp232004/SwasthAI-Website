@@ -6,6 +6,13 @@ import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getPostBySlug, getAllPosts, getRelatedPosts, extractTableOfContents } from "@/lib/mdx";
 import Callout from "@/components/blog/Callout";
+import {
+  HeroWorkflowVisual,
+  NationalMilestoneVisual,
+  InformationGapVisual,
+  SwasthAIWorkflowVisual,
+  MidArticleCTA
+} from "@/components/blog/ArticleVisuals";
 import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgressBar from "@/components/blog/ReadingProgressBar";
 import ShareButtons from "@/components/blog/ShareButtons";
@@ -73,6 +80,11 @@ export async function generateMetadata({ params }: PageParams): Promise<Metadata
 
 const mdxComponents = {
   Callout,
+  HeroWorkflowVisual,
+  NationalMilestoneVisual,
+  InformationGapVisual,
+  SwasthAIWorkflowVisual,
+  MidArticleCTA,
   h2: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {
     const text = typeof children === "string" ? children : String(children);
     const id = text

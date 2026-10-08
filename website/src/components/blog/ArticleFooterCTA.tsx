@@ -18,7 +18,7 @@ export default function ArticleFooterCTA() {
             Want to see how this works in practice?
           </p>
           <p className="text-sm text-gray-300">
-            Book a 15-minute SwasthAI demo for your clinic today.
+            Book a 15 minute SwasthAI demo for your clinic today.
           </p>
         </div>
 
@@ -29,7 +29,7 @@ export default function ArticleFooterCTA() {
           className="bg-[#25D366] hover:bg-[#1DA851] text-white px-7 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5 shrink-0"
         >
           <MessageSquare className="w-4 h-4 fill-white" />
-          <span>Book a 15-minute SwasthAI demo</span>
+          <span>Book a 15 minute SwasthAI demo</span>
           <ArrowRight className="w-4 h-4" />
         </a>
       </div>
